@@ -2,6 +2,7 @@ base de datos
 
 create database estudianteDB;
 use estudianteDB;
+
 create table nuevo_estudiante(
 cedula_estudiante INT PRIMARY KEY,
 nombre VARCHAR(50),
@@ -9,5 +10,12 @@ correo VARCHAR(50),
 matricula VARCHAR(50),
 generacion VARCHAR(50)
 );
+create table docente(
 
+cedula int primary key,
+nombre varchar(50),
+correo varchar(100),
+titulo varchar (50),
+especialidad varchar(50)
+);
 
