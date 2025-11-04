@@ -24,7 +24,7 @@ class EstudianteBD extends conecion{
     $this->desconectar();
     }
 
-    public function Cargarestudiante(){
+    public function ListarEstudiantes(){
 
     $this->conectar();
     $sql = "SELECT * FROM estudiante";
@@ -39,29 +39,24 @@ class EstudianteBD extends conecion{
     $result->close();
     $this->desconectar();
     return $estudiante;
+    }
 
-    public function actualizarEstudiantes($nombre,$cedula,$correo,$matricula,$generacion){
+    public function ActualizarEstudiante($cedula,$correo,$nombre,$matricula,$generacion){
         $this->conectar();
             
-        $sql = "UPDATE estudiante SET nombre = ?, cedula = ?, correo = ?, generacion = ? WHERE matricula = ?";
-        $stmt = $this ->con->prepare($sql);
-        $stmt->bind_param( "isssi")
-        
-        if ($stmt->execute()){}
-    }
+        $sql = "UPDATE estudiante SET nombre = ?, cedula = ?, correo = ?, generacion =?, matricula = ?  WHERE cedula = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("isssi", $cedula, $correo,$nombre, $matricula, $generacion);
 
- if(isset($_SESSION['listaEstudiante'])){
-        $_SESSION['listaEstudiante'] = [];
-    }else{
-        $docente=[
-            'nombre'=>$nombre,
-            'cedula'=>$cedula,
-            'correo'=>$correo,
-            'matricula'=>$matricula,
-            'generacion'=>$generacion,
-        ];
-        $_SESSION['listaEstudiante'][] = $estudiante;
-    }
+        
+        if ($stmt->execute()){
+           echo "Registro actualizado con exito"; 
+        } else {
+            echo "error". $stmt->error;
+        }
+
+          $stmt->close();
+    $this->Desconectar();
 
 }
 }

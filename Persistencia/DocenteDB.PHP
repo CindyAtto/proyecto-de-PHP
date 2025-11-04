@@ -1,5 +1,5 @@
 <?php
-include_once "conecion.php";
+include_once  'conecion.php';
 
 class DocenteDB{
 
@@ -10,7 +10,7 @@ public function Agregar(
     $titulo,
     $especialidad)
     {
-    $this->conectar();
+    $this-> conectar();
     $sql = "INSERT INTO docente(correo,nombre,cedula,titulo,especialidad)VALUES(?,?,?,?,?)";
     $stmt = $this->con->prepare($sql);
     $stmt->bind_param("ssiss,$correo,$nombre,$cedula,$titulo,$especialidad");

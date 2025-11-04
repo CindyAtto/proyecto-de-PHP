@@ -27,8 +27,8 @@ class Estudiante extends Persona
 
     public function AgregarEstudiante(){
         include_once "../Persistencia/EstudianteDB.php";
-        $esudianteBD = new EstudianteBD();
-        $esudianteBD->Agregar(
+        $EstudianteDB = new EstudianteBD();
+        $EstudianteDB->Agregar(
         $this->getcedula(),
         $this->getnombre(),
         $this->getcorreo(),
@@ -36,6 +36,20 @@ class Estudiante extends Persona
         $this->generacion);    
     }
     public function ListarEstudiantes(){
-        
+       include_once "../Persistencia/EstudianteDB.php";
+       $EstudianteDB = new EstudianteBD();
+       return $EstudianteDB->ListarEstudiantes();
+    }
+
+    public function ActualizarEstudiante(){
+      include_once "../Persistencia/EstudianteDB.php";
+      $EstudianteDB = new EstudianteBD();
+      $EstudianteDB->ActualizarEstudiante(
+        $this->getcedula(),
+        $this->getnombre(),
+        $this->getcorreo(),
+        $this->matricula,
+        $this->generacion,
+      );
     }
 }

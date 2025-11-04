@@ -35,5 +35,10 @@ class Docente extends Persona
         $this->titulo,
         $this->especialidad);    
     }
+public function listaDocente(){
+    include_once "../Persistencia/DocenteDB.php";
+    $DocenteDB = new DocenteDB();
+    return $DocenteDB->listaDocente();
+}
 
 }
