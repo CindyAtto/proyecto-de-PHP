@@ -35,4 +35,7 @@ class Estudiante extends Persona
         $this->matricula,
         $this->generacion);    
     }
+    public function ListarEstudiantes(){
+        
+    }
 }

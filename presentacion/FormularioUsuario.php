@@ -30,7 +30,9 @@ session_start();
         <label>Especialidad:</label><input type="text" name="especialidad">
     </div>
 
-    <button type="submit" name="enviar">Enviar</button>
+    <input type="submit" name="Enviar">
+    <input type="submit"value= "ListarEstudiante"name="ListarEstudiante">
+
 </form>
 
 <script>

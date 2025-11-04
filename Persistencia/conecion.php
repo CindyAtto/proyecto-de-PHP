@@ -2,7 +2,7 @@
 class conecion{
     private $nombreServidor = 'localhost';
     private $nombreUsuario = 'root';
-    private $contrasena = '';
+    private $contraseña= '';
     private $bd = 'estudianteDB';
     protected $con;
 
@@ -13,7 +13,7 @@ class conecion{
             $this->contraseña,
             $this->bd
         );
-        if($this->connect_error){
+        if($this->con-> connect_error){
             die("error al conectarse: " .$this->con->connect_error);
         }
 
