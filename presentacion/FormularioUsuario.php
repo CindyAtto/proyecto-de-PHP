@@ -30,9 +30,13 @@ session_start();
         <label>Especialidad:</label><input type="text" name="especialidad">
     </div>
 
-    <input type="submit" name="Enviar">
-    <input type="submit"value= "ListarEstudiante"name="ListarEstudiante">
+ <button type="submit" name="enviar">Enviar</button>  
+ <button type="submit" name="actualizar">actualizar</button>
+</form>
+</form>
 
+<form action="" method="post">
+<button type="submit" name="listar">Listar</button>
 </form>
 
 <script>
@@ -62,13 +66,14 @@ if (isset($_POST['enviar'])) {
         $estudiante->setGeneracion($_POST['generacion']);
         $estudiante->AgregarEstudiante();
 }
- if($_POST ['opcion'] == "docente"){
-        echo "click en docente";
+ if($_POST ['opcion'] == "estudiante"){
+        echo "click en estudiante";
     }
 
 }
 
-    if (isset($_SESSION['listaEstudiente'])){
+    if (isset($_POST['listaEstudiente'])){
+       echo "Lista Estudiante";
         echo "<table border=1>
         <tr>
         <th> nombre </th>
@@ -77,9 +82,9 @@ if (isset($_POST['enviar'])) {
         <th> matricula </th>
         <th> generacion </th>
         </tr>";
-    
-    foreach($_SESSION['listaEstudiente'] as $estudiante ){
-    if (count($_SESSION['listaEstudiente'])>0){
+    $estudiante = new estudiante();
+    $listar = $estudiante->ListarEstudiantes();
+    foreach($listar as $estudiante ){
                 echo "<tr>
               <td> ".$estudiante['cedula']."</td>
               <td> ".$estudiante['correo']."</td>
@@ -87,13 +92,10 @@ if (isset($_POST['enviar'])) {
               <td> ".$estudiante['matricula']."</td>
               <td> ".$estudiante['generacion']."</td>            
         </tr>";
-
+    }
     echo "</table>";
-} else {
-    echo "no hay estudiantes registrados";
-}
-    }
-    }
+} 
+
 if (isset($_POST['enviar'])){
     if($_POST['opcion'] == 'docente'){
     $docente = new docente();
@@ -105,8 +107,8 @@ if (isset($_POST['enviar'])){
     $docente->agregarDocente();    
     }
 }
-if (isset($_SESSION['listaDocente'])){
-
+if (isset($_POST['listaDocente'])){
+    echo "lista Docente";
     echo '<table border=1>
     <tr>
     <th> nombre </th>
@@ -116,22 +118,28 @@ if (isset($_SESSION['listaDocente'])){
     <th> especialidad </th>
     </tr>'; 
  
- 
+ $docente = new docente();
+ $listar = $docente->listaDocente();
 
-foreach($_SESSION['listaDocente'] as $docente){
-    if (count($_SESSION['listaDocente'])>0){
+foreach($listaDocente as $docente){
         echo"<tr>
-        <td> ".$estudiante['cedula']."</td>
-        <td> ".$estudiante['correo']."</td>
-        <td> ".$estudiante['nombre']."</td>
+        <td> ".$docente['cedula']."</td>
+        <td> ".$docente['correo']."</td>
+        <td> ".$docente['nombre']."</td>
         <td> ".$docente['titulo']."</td>
         <td> ".$docente['especialidad']."</td>
        </tr> ";
     }
-}
 
 echo "</table>";
 }
+ if (isset($_POST['actualizar'])){
+        if ($_POST['opcion'] == "estudiante") {
+            $estudiante = new estudiante();
+            $estudiante->setcedula($_POST['cedula']);
+            $estudiante->ActualizarEstudiante();
+        }
+    }
 ?>
 
 </body>
