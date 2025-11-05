@@ -1,7 +1,7 @@
 <?php
 include_once  'conecion.php';
 
-class DocenteDB{
+class DocenteDB extends conecion{
 
 public function Agregar(
     $correo,
@@ -13,7 +13,7 @@ public function Agregar(
     $this-> conectar();
     $sql = "INSERT INTO docente(correo,nombre,cedula,titulo,especialidad)VALUES(?,?,?,?,?)";
     $stmt = $this->con->prepare($sql);
-    $stmt->bind_param("ssiss,$correo,$nombre,$cedula,$titulo,$especialidad");
+    $stmt->bind_param("ssiss",$correo,$nombre,$cedula,$titulo,$especialidad);
 
  if ($stmt->execute()) {
             echo "Nuevo registro creado con éxito";
