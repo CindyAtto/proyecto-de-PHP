@@ -13,7 +13,7 @@ class EstudianteBD extends conecion{
     $this-> conectar();
     $sql= "INSERT INTO estudiante(cedula,correo,nombre,matricula,generacion) values (?,?,?,?,?)";    
     $stmt = $this->con->prepare($sql);
-    $stmt->bind_param(" isssi ",$cedula,$correo,$nombre,$matricula,$generacion);
+    $stmt->bind_param("isssi",$cedula,$correo,$nombre,$matricula,$generacion);
     
     if ($stmt->execute()){
         echo "nuevo registro creado con exito";
@@ -28,7 +28,7 @@ class EstudianteBD extends conecion{
 
     $this->conectar();
     $sql = "SELECT * FROM estudiante";
-    $resuly = $this->con->query($sql);
+    $result = $this->con->query($sql);
 
     $estudiante =[];
     if ($result->num_rows > 0 ){
