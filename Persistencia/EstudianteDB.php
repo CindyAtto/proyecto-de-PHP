@@ -11,10 +11,10 @@ class EstudianteBD extends conecion{
     $generacion) {
 
     $this-> conectar();
-    $sql= "INSERT INTO estudiante(cedula,correo,nombre,matricula,generacion) values (?,?,?,?,?)";    
-    $stmt = $this->con->prepare($sql);
-    $stmt->bind_param("isssi",$cedula,$correo,$nombre,$matricula,$generacion);
-    
+      $sql = "INSERT INTO estudiante (cedula, correo, nombre, matricula, generacion) VALUES (?, ?, ?, ?, ?)";
+      $stmt = $this->con->prepare($sql);
+      $stmt->bind_param("isssi", $cedula, $correo, $nombre, $matricula, $generacion);
+        
     if ($stmt->execute()){
         echo "nuevo registro creado con exito";
     } else {
@@ -44,9 +44,10 @@ class EstudianteBD extends conecion{
     public function ActualizarEstudiante($cedula,$correo,$nombre,$matricula,$generacion){
         $this->conectar();
             
-        $sql = "UPDATE estudiante SET nombre = ?, cedula = ?, correo = ?, generacion =?, matricula = ?  WHERE cedula = ?";
+        $sql = "UPDATE estudiante SET correo = ?, nombre = ?, matricula = ?, generacion = ? WHERE cedula = ?";
         $stmt = $this->con->prepare($sql);
-        $stmt->bind_param("isssi", $cedula, $correo,$nombre, $matricula, $generacion);
+        $stmt->bind_param("ssiii", $correo, $nombre, $matricula, $generacion, $cedula);
+
 
         
         if ($stmt->execute()){
