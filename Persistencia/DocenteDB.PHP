@@ -40,21 +40,6 @@ public function Agregar(
         $result->close();
         $this->desconectar();
         return $docente;
-
-    if(isset($_SESSION['listaDocente'])){
-        $_SESSION['listaDocente'] = [];
-    }else{
-        $docente=[
-            'nombre'=>$nombre,
-            'cedula'=>$cedula,
-            'correo'=>$correo,
-            'titulo'=>$titulo,
-            'especialidad'=>$especialidad,
-        ];
-        $_SESSION['listaDocente'][] = $docente;
     }
 }
-
-}
-
 ?>
