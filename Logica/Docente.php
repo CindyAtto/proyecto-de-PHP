@@ -40,5 +40,15 @@ public function listaDocente(){
     $DocenteDB = new DocenteDB();
     return $DocenteDB->listaDocente();
 }
-
+public function ActualizarDocente(){
+    include_once "../Persistencia/DocenteDB.php";
+    $DocenteDB = new DocenteDB();
+    $DocenteDB->ActualizarDocente(
+        $this->getcedula(),
+        $this->getnombre(),
+        $this->getcorreo(),
+        $this->titulo,
+        $this->especialidad
+    );
+}
 }
